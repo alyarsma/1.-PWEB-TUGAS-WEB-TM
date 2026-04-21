@@ -1,220 +1,376 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NEKOYA — Tambah Kostum</title>
-  <link rel="icon" type="image/png" href="picture/Logo Nekoya.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Nunito:wght@400;600;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-
-<nav id="navbar">
-  <a href="index.html" class="nav-logo">
-    <div class="logo-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEKOYA — Tambah Kostum</title>
+    <link rel="icon" type="image/png" href="picture/Logo Nekoya.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Nunito:wght@400;600;700;800&family=Orbitron:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav id="navbar">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">
           <img src="picture/Logo Nekoya.png" alt="Logo Nekoya" />
         </div>
-    <div>
-      <span class="logo-text">NEKOYA</span>
-      <span class="logo-sub">Cosplay Rental</span>
-    </div>
-  </a>
-
-  <ul class="nav-menu" id="navMenu">
-    <li><a href="index.html">Beranda</a></li>
-    <li><a href="katalog.html">Katalog</a></li>
-    <li><a href="inventaris.html">Inventaris</a></li>
-    <li><a href="tambah.html" class="active">Tambah Kostum</a></li>
-    <li><a href="kontak.html">Kontak</a></li>
-    <li><a href="" class="nav-cta">Login</a></li>
-  </ul>
-
-  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
-
-<section id="form-section" style="padding-top:110px;">
-  <div class="container">
-    <div class="form-layout">
-      <div class="form-card reveal">
-        <div class="form-title">
-          <span id="formTitle">Tambah Kostum Baru</span>
+        <div>
+          <span class="logo-text">NEKOYA</span>
+          <span class="logo-sub">Cosplay Rental</span>
         </div>
+      </a>
 
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="kodeBarang">Kode Barang <span class="req">*</span></label>
-            <input type="text" id="kodeBarang" placeholder="e.g. NKY-001" maxlength="20"/>
-            <span class="error-msg" id="err-kode">Kode barang wajib diisi!</span>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="katalog.html">Katalog</a></li>
+        <li><a href="inventaris.html">Inventaris</a></li>
+        <li><a href="tambah.html" class="active">Tambah Kostum</a></li>
+        <li><a href="kontak.html">Kontak</a></li>
+        <li><a href="" class="nav-cta">Login</a></li>
+      </ul>
+
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+
+    <section id="form-section" style="padding-top: 110px">
+      <div class="container">
+        <div class="form-layout">
+          <div class="form-card reveal">
+            <div class="form-title">
+              <span id="formTitle">Tambah Kostum Baru</span>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="kodeBarang"
+                  >Kode Barang <span class="req">*</span></label
+                >
+                <input
+                  type="text"
+                  id="kodeBarang"
+                  placeholder="e.g. NKY-001"
+                  maxlength="20"
+                />
+                <span class="error-msg" id="err-kode"
+                  >Kode barang wajib diisi!</span
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="namaBarang"
+                  >Nama Kostum <span class="req">*</span></label
+                >
+                <input
+                  type="text"
+                  id="namaBarang"
+                  placeholder="e.g. Rem Re:Zero Maid"
+                />
+                <span class="error-msg" id="err-nama"
+                  >Nama kostum wajib diisi!</span
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="kategori"
+                  >Kategori <span class="req">*</span></label
+                >
+                <select id="kategori">
+                  <option value="">-- Pilih Kategori --</option>
+                  <option value="anime">Anime</option>
+                  <option value="vtuber">Vtuber</option>
+                  <option value="game">Game</option>
+                  <option value="original">Original</option>
+                </select>
+                <span class="error-msg" id="err-kategori">Pilih kategori!</span>
+              </div>
+
+              <div class="form-group">
+                <label for="jumlah"
+                  >Jumlah Stok <span class="req">*</span></label
+                >
+                <input
+                  type="number"
+                  id="jumlah"
+                  placeholder="e.g. 3"
+                  min="1"
+                  max="999"
+                />
+                <span class="error-msg" id="err-jumlah"
+                  >Jumlah stok wajib diisi!</span
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="satuan">Satuan <span class="req">*</span></label>
+                <select id="satuan">
+                  <option value="">-- Pilih Satuan --</option>
+                  <option value="set">Set</option>
+                  <option value="pcs">Pcs</option>
+                  <option value="buah">Buah</option>
+                </select>
+                <span class="error-msg" id="err-satuan"
+                  >Satuan wajib dipilih!</span
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="harga"
+                  >Harga / Hari (Rp) <span class="req">*</span></label
+                >
+                <input
+                  type="number"
+                  id="harga"
+                  placeholder="e.g. 150000"
+                  min="0"
+                />
+                <span class="error-msg" id="err-harga">Harga wajib diisi!</span>
+              </div>
+
+              <div class="form-group">
+                <label for="tanggalMasuk"
+                  >Tanggal Masuk <span class="req">*</span></label
+                >
+                <input type="date" id="tanggalMasuk" />
+                <span class="error-msg" id="err-tanggal"
+                  >Tanggal masuk wajib diisi!</span
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="supplier"
+                  >Supplier <span class="req">*</span></label
+                >
+                <input
+                  type="text"
+                  id="supplier"
+                  placeholder="e.g. NekoCraft Studio"
+                />
+                <span class="error-msg" id="err-supplier"
+                  >Supplier wajib diisi!</span
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="daerah"
+                  >Daerah / Kota <span class="req">*</span></label
+                >
+                <select id="daerah">
+                  <option value="">-- Pilih Daerah --</option>
+                  <option value="Jakarta">Jakarta</option>
+                  <option value="Surabaya">Surabaya</option>
+                  <option value="Bandung">Bandung</option>
+                  <option value="Yogyakarta">Yogyakarta</option>
+                  <option value="Malang">Malang</option>
+                  <option value="Semarang">Semarang</option>
+                  <option value="Jember">Jember</option>
+                  <option value="Medan">Medan</option>
+                  <option value="Makassar">Makassar</option>
+                  <option value="Bali">Bali</option>
+                </select>
+                <span class="error-msg" id="err-daerah"
+                  >Daerah wajib dipilih!</span
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="fotoBarang">Foto Barang</label>
+                <input
+                  type="file"
+                  id="fotoBarang"
+                  accept="image/*"
+                  onchange="previewFoto(this)"
+                />
+              </div>
+
+              <div class="form-group full">
+                <label for="keterangan">Keterangan</label>
+                <textarea
+                  id="keterangan"
+                  placeholder="Deskripsi kostum, kondisi, ukuran tersedia, dll..."
+                ></textarea>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; margin-top: 0.5rem">
+              <button class="btn-submit" onclick="submitForm()" id="submitBtn">
+                Simpan Kostum
+              </button>
+              <button
+                class="btn-secondary"
+                onclick="resetForm()"
+                style="
+                  padding: 1rem 1.5rem;
+                  border-radius: 12px;
+                  font-weight: 800;
+                  font-size: 0.9rem;
+                "
+              >
+                ↩ Reset
+              </button>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="namaBarang">Nama Kostum <span class="req">*</span></label>
-            <input type="text" id="namaBarang" placeholder="e.g. Rem Re:Zero Maid"/>
-            <span class="error-msg" id="err-nama">Nama kostum wajib diisi!</span>
-          </div>
+          <div
+            class="reveal"
+            style="display: flex; flex-direction: column; gap: 1.5rem"
+          >
+            <div class="form-card" style="padding: 1.5rem">
+              <div
+                class="form-title"
+                style="margin-bottom: 1rem; font-size: 0.85rem"
+              >
+                Preview Foto
+              </div>
+              <div class="foto-preview" id="fotoPreview">
+                <span>📷 Belum ada foto dipilih</span>
+              </div>
+            </div>
 
-          <div class="form-group">
-            <label for="kategori">Kategori <span class="req">*</span></label>
-            <select id="kategori">
-              <option value="">-- Pilih Kategori --</option>
-              <option value="anime">Anime</option>
-              <option value="vtuber">Vtuber</option>
-              <option value="game">Game</option>
-              <option value="original">Original</option>
-            </select>
-            <span class="error-msg" id="err-kategori">Pilih kategori!</span>
+            <div
+              class="form-card"
+              style="
+                padding: 1.5rem;
+                background: rgba(56, 189, 248, 0.05);
+                border-color: rgba(56, 189, 248, 0.2);
+              "
+            >
+              <div
+                class="form-title"
+                style="
+                  margin-bottom: 1rem;
+                  font-size: 0.85rem;
+                  color: var(--accent-cyan);
+                "
+              >
+                Tips Penyewaan
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  gap: 0.6rem;
+                  font-size: 0.82rem;
+                  color: var(--white-dim);
+                  line-height: 1.7;
+                "
+              >
+                <p>Pastikan semua field wajib (*) terisi dengan benar.</p>
+                <p>
+                  Upload foto berkualitas tinggi agar kostum lebih menarik
+                  penyewa.
+                </p>
+                <p>Harga sewa dihitung per hari, minimalkan 1 hari sewa.</p>
+                <p>
+                  Stok menipis (&lt;5 unit) akan mendapat peringatan otomatis.
+                </p>
+                <p>Pilih daerah sesuai lokasi kostum disimpan.</p>
+              </div>
+            </div>
           </div>
-
-          <div class="form-group">
-            <label for="jumlah">Jumlah Stok <span class="req">*</span></label>
-            <input type="number" id="jumlah" placeholder="e.g. 3" min="1" max="999"/>
-            <span class="error-msg" id="err-jumlah">Jumlah stok wajib diisi!</span>
-          </div>
-
-          <div class="form-group">
-            <label for="satuan">Satuan <span class="req">*</span></label>
-            <select id="satuan">
-              <option value="">-- Pilih Satuan --</option>
-              <option value="set">Set</option>
-              <option value="pcs">Pcs</option>
-              <option value="buah">Buah</option>
-            </select>
-            <span class="error-msg" id="err-satuan">Satuan wajib dipilih!</span>
-          </div>
-
-          <div class="form-group">
-            <label for="harga">Harga / Hari (Rp) <span class="req">*</span></label>
-            <input type="number" id="harga" placeholder="e.g. 150000" min="0"/>
-            <span class="error-msg" id="err-harga">Harga wajib diisi!</span>
-          </div>
-
-          <div class="form-group">
-            <label for="tanggalMasuk">Tanggal Masuk <span class="req">*</span></label>
-            <input type="date" id="tanggalMasuk"/>
-            <span class="error-msg" id="err-tanggal">Tanggal masuk wajib diisi!</span>
-          </div>
-
-          <div class="form-group">
-            <label for="supplier">Supplier <span class="req">*</span></label>
-            <input type="text" id="supplier" placeholder="e.g. NekoCraft Studio"/>
-            <span class="error-msg" id="err-supplier">Supplier wajib diisi!</span>
-          </div>
-
-          <div class="form-group">
-            <label for="daerah">Daerah / Kota <span class="req">*</span></label>
-            <select id="daerah">
-              <option value="">-- Pilih Daerah --</option>
-              <option value="Jakarta">Jakarta</option>
-              <option value="Surabaya">Surabaya</option>
-              <option value="Bandung">Bandung</option>
-              <option value="Yogyakarta">Yogyakarta</option>
-              <option value="Malang">Malang</option>
-              <option value="Semarang">Semarang</option>
-              <option value="Jember">Jember</option>
-              <option value="Medan">Medan</option>
-              <option value="Makassar">Makassar</option>
-              <option value="Bali">Bali</option>
-            </select>
-            <span class="error-msg" id="err-daerah">Daerah wajib dipilih!</span>
-          </div>
-
-          <div class="form-group">
-            <label for="fotoBarang">Foto Barang</label>
-            <input type="file" id="fotoBarang" accept="image/*" onchange="previewFoto(this)"/>
-          </div>
-
-          <div class="form-group full">
-            <label for="keterangan">Keterangan</label>
-            <textarea id="keterangan" placeholder="Deskripsi kostum, kondisi, ukuran tersedia, dll..."></textarea>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:1rem;margin-top:0.5rem;">
-          <button class="btn-submit" onclick="submitForm()" id="submitBtn">Simpan Kostum</button>
-          <button class="btn-secondary" onclick="resetForm()" style="padding:1rem 1.5rem;border-radius:12px;font-weight:800;font-size:0.9rem;">↩ Reset</button>
         </div>
       </div>
+    </section>
 
-      <div class="reveal" style="display:flex;flex-direction:column;gap:1.5rem;">
-        <div class="form-card" style="padding:1.5rem;">
-          <div class="form-title" style="margin-bottom:1rem;font-size:0.85rem;">Preview Foto</div>
-          <div class="foto-preview" id="fotoPreview">
-            <span>📷 Belum ada foto dipilih</span>
+    <div class="toast" id="toast"></div>
+
+    <footer id="footer" class="footer-simple">
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-left">
+            <div class="footer-brand">
+              <img
+                src="picture/Logo Nekoya.png"
+                alt="Nekoya"
+                class="footer-logo"
+              />
+              <div>
+                <h3>NEKOYA</h3>
+                <span>Cosplay Rental</span>
+              </div>
+            </div>
+
+            <p class="footer-desc">
+              Platform rental cosplay anime, Vtuber, dan karakter game terbesar
+              di Indonesia. Terpercaya, berkualitas, dan tersebar di berbagai
+              daerah.
+            </p>
+
+            <div class="footer-social">
+              <a
+                href="https://instagram.com/"
+                class="social-btn"
+                target="_blank"
+                aria-label="Instagram"
+              >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
+                  alt="Instagram"
+                  class="social-icon"
+                />
+              </a>
+
+              <a
+                href="https://www.tiktok.com/"
+                class="social-btn"
+                target="_blank"
+                aria-label="TikTok"
+              >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png"
+                  alt="TikTok"
+                  class="social-icon"
+                />
+              </a>
+
+              <a
+                href="https://discord.com/"
+                class="social-btn"
+                target="_blank"
+                aria-label="Discord"
+              >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png"
+                  alt="Discord"
+                  class="social-icon"
+                />
+              </a>
+
+              <a
+                href="https://x.com/"
+                class="social-btn"
+                target="_blank"
+                aria-label="Twitter"
+              >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
+                  alt="Twitter"
+                  class="social-icon"
+                />
+              </a>
+            </div>
           </div>
         </div>
 
-        <div class="form-card" style="padding:1.5rem;background:rgba(56,189,248,0.05);border-color:rgba(56,189,248,0.2);">
-          <div class="form-title" style="margin-bottom:1rem;font-size:0.85rem;color:var(--accent-cyan);">Tips Penyewaan</div>
-          <div style="display:flex;flex-direction:column;gap:0.6rem;font-size:0.82rem;color:var(--white-dim);line-height:1.7;">
-            <p>Pastikan semua field wajib (*) terisi dengan benar.</p>
-            <p>Upload foto berkualitas tinggi agar kostum lebih menarik penyewa.</p>
-            <p>Harga sewa dihitung per hari, minimalkan 1 hari sewa.</p>
-            <p>Stok menipis (&lt;5 unit) akan mendapat peringatan otomatis.</p>
-            <p>Pilih daerah sesuai lokasi kostum disimpan.</p>
+        <div class="footer-line"></div>
+
+        <div class="footer-bottom">
+          <p>© 2026 <span>NEKOYA Cosplay Rental</span>. All rights reserved.</p>
+
+          <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="kontak.html">Contact Us</a>
+            <a href="#">Version 1.0</a>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </footer>
 
-<div class="toast" id="toast"></div>
-
-<footer id="footer" class="footer-simple">
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-left">
-        <div class="footer-brand">
-          <img src="picture/Logo Nekoya.png" alt="Nekoya" class="footer-logo" />
-          <div>
-            <h3>NEKOYA</h3>
-            <span>Cosplay Rental</span>
-          </div>
-        </div>
-
-        <p class="footer-desc">
-          Platform rental cosplay anime, Vtuber, dan karakter game terbesar di Indonesia.
-          Terpercaya, berkualitas, dan tersebar di berbagai daerah.
-        </p>
-
-        <div class="footer-social">
-          <a href="https://instagram.com/" class="social-btn" target="_blank" aria-label="Instagram">
-            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" class="social-icon" />
-          </a>
-
-          <a href="https://www.tiktok.com/" class="social-btn" target="_blank" aria-label="TikTok">
-            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" alt="TikTok" class="social-icon" />
-          </a>
-
-          <a href="https://discord.com/" class="social-btn" target="_blank" aria-label="Discord">
-            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" class="social-icon" />
-          </a>
-
-          <a href="https://x.com/" class="social-btn" target="_blank" aria-label="Twitter">
-            <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" class="social-icon" />
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-line"></div>
-
-    <div class="footer-bottom">
-      <p>© 2026 <span>NEKOYA Cosplay Rental</span>. All rights reserved.</p>
-
-      <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="kontak.html">Contact Us</a>
-        <a href="#">Version 1.0</a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
