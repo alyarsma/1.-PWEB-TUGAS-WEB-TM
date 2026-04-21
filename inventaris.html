@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEKOYA — Inventaris</title>
+  <link rel="icon" type="image/png" href="picture/Logo Nekoya.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Nunito:wght@400;600;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-icon">
+          <img src="picture/Logo Nekoya.png" alt="Logo Nekoya" />
+        </div>
+    <div>
+      <span class="logo-text">NEKOYA</span>
+      <span class="logo-sub">Cosplay Rental</span>
+    </div>
+  </a>
+
+  <ul class="nav-menu" id="navMenu">
+    <li><a href="index.html">Beranda</a></li>
+    <li><a href="katalog.html">Katalog</a></li>
+    <li><a href="inventaris.html" class="active">Inventaris</a></li>
+    <li><a href="tambah.html">Tambah Kostum</a></li>
+    <li><a href="kontak.html">Kontak</a></li>
+    <li><a href="" class="nav-cta">Login</a></li>
+  </ul>
+
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section id="tabel-section" style="padding-top:110px;">
+  <div class="container reveal">
+    <div style="margin-bottom:2rem;">
+      <div class="section-tag">Inventaris</div>
+      <h2 class="section-title">Daftar <span>Barang Masuk</span></h2>
+      <p class="section-desc">Kelola seluruh inventaris kostum rental dengan mudah dan efisien.</p>
+    </div>
+
+    <div class="table-wrap">
+      <div class="table-header">
+        <div class="table-title">Inventaris Kostum</div>
+        <div style="display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap;">
+          <div class="search-input-wrap" style="min-width:0">
+            <input type="text" class="search-input" id="tabelSearch" placeholder="Cari barang..." oninput="filterTabel()" style="padding-left:2.5rem;font-size:0.82rem;"/>
+          </div>
+          <button class="btn-primary" onclick="window.location.href='tambah.html'" style="padding:0.6rem 1.2rem;font-size:0.82rem;">+ Tambah</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table aria-label="Tabel inventaris kostum">
+          <thead>
+            <tr>
+              <th>Kode</th>
+              <th>Nama Kostum</th>
+              <th>Kategori</th>
+              <th>Jumlah</th>
+              <th>Harga/Hari</th>
+              <th>Supplier</th>
+              <th>Tgl Masuk</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="tabelBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stats-section" style="background: var(--blue-mid); padding: 4rem 2rem;">
+  <div class="container reveal">
+    <div style="text-align:center; margin-bottom:1rem;">
+      <div class="section-tag" style="display:inline-flex;">Analytics</div>
+      <h2 class="section-title" style="text-align:center;">Statistik <span>Inventaris</span></h2>
+    </div>
+    <div class="stats-grid" id="statsGrid"></div>
+  </div>
+</section>
+
+<div class="modal-overlay" id="modalHapus">
+  <div class="modal">
+    <div class="modal-icon">🗑️</div>
+    <div class="modal-title">Konfirmasi Hapus</div>
+    <div class="modal-desc">Apakah kamu yakin ingin menghapus kostum <span class="modal-item-name" id="modalItemName">"—"</span> dari inventaris?</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Batal</button>
+      <button class="modal-confirm" onclick="confirmHapus()">Ya, Hapus!</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<footer id="footer" class="footer-simple">
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-left">
+            <div class="footer-brand">
+              <img
+                src="picture/Logo Nekoya.png"
+                alt="Nekoya"
+                class="footer-logo"
+              />
+              <div>
+                <h3>NEKOYA</h3>
+                <span>Cosplay Rental</span>
+              </div>
+            </div>
+
+            <p class="footer-desc">
+              Platform rental cosplay anime, Vtuber, dan karakter game terbesar
+              di Indonesia. Terpercaya, berkualitas, dan tersebar di berbagai
+              daerah.
+            </p>
+
+            <div class="footer-social">
+              <a
+                href="https://instagram.com/"
+                class="social-btn"
+                target="_blank"
+                aria-label="Instagram"
+              >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
+                  alt="Instagram"
+                  class="social-icon"
+                />
+              </a>
+
+              <a
+                href="https://www.tiktok.com/"
+                class="social-btn"
+                target="_blank"
+                aria-label="TikTok"
+              >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png"
+                  alt="TikTok"
+                  class="social-icon"
+                />
+              </a>
+
+              <a
+                href="https://discord.com/"
+                class="social-btn"
+                target="_blank"
+                aria-label="Discord"
+              >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png"
+                  alt="Discord"
+                  class="social-icon"
+                />
+              </a>
+
+              <a
+                href="https://x.com/"
+                class="social-btn"
+                target="_blank"
+                aria-label="Twitter"
+              >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
+                  alt="Twitter"
+                  class="social-icon"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-line"></div>
+
+        <div class="footer-bottom">
+          <p>© 2026 <span>NEKOYA Cosplay Rental</span>. All rights reserved.</p>
+
+          <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="kontak.html">Contact Us</a>
+            <a href="#">Version 1.0</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
