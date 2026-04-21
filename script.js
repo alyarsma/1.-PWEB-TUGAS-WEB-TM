@@ -67,6 +67,64 @@ const defaultData = [
     keterangan: "Full set Risu ID gen1, eksklusif daerah Jember",
     foto: "picture/Ayunda Risu.jpg",
   },
+
+  {
+    kode: "NKY-006",
+    nama: "Ai Hoshino",
+    kategori: "anime",
+    jumlah: 0,
+    satuan: "set",
+    harga: 190000,
+    tanggalMasuk: "2026-04-10",
+    supplier: "AnimeWear Nusantara",
+    daerah: "Yogyakarta",
+    keterangan: "kostum Ai Hoshino lengkap dengan aksesori bintang",
+    foto: "picture/Ai Hoshino.jpg",
+  },
+
+  {
+    kode: "NKY-007",
+    nama: "Hololive Zeta",
+    kategori: "anime",
+    jumlah: 2,
+    satuan: "set",
+    harga: 190000,
+    tanggalMasuk: "2026-04-10",
+    supplier: "VTuber Costumes ID",
+    daerah: "Yogyakarta",
+    keterangan: "kostum Hololive Zeta lengkap dengan aksesoris dan wig",
+    foto: "picture/Zeta.jpg",
+  },
+
+  {
+    kode: "NKY-008",
+    nama: "Anya Forger",
+    kategori: "anime",
+    jumlah: 11,
+    satuan: "set",
+    harga: 120000,
+    tanggalMasuk: "2026-04-21",
+    supplier: "AnimeWear Nusantara",
+    daerah: "Yogyakarta",
+    keterangan:
+      "kostum Anya Forger lengkap dengan wig pink dan aksesori boneka",
+    foto: "picture/Anya Forger.jpg",
+  },
+
+  {
+    kode: "NKY-009",
+    nama: "Luffy Gear 5",
+    kategori: "anime",
+    jumlah: 11,
+    satuan: "set",
+    harga: 160000,
+    tanggalMasuk: "2026-04-21",
+    supplier: "AnimeWear Nusantara",
+    daerah: "Yogyakarta",
+    keterangan:
+      "kostum Luffy Gear 5 lengkap dengan aksesori topi jerami dan wig",
+    foto: "picture/Luffy Gear 5.jpg",
+  },
 ];
 
 const STORAGE_KEY = "nekoya_inventory";
