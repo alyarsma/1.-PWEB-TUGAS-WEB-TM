@@ -303,14 +303,14 @@ const renderTabel = (data) => {
       const realIdx = inventory.indexOf(item);
       const isLow = item.jumlah < 5;
       let statusClass = "badge-available",
-        statusText = "✅ Tersedia";
+        statusText = "Tersedia";
       if (isLow && item.jumlah > 0) {
         statusClass = "badge-limited";
-        statusText = "⚠️ Terbatas";
+        statusText = "Terbatas";
       }
       if (item.jumlah === 0) {
         statusClass = "badge-rented";
-        statusText = "❌ Habis";
+        statusText = "Habis";
       }
       return `
       <tr>
@@ -323,8 +323,8 @@ const renderTabel = (data) => {
         <td>${item.tanggalMasuk}</td>
         <td><span class="badge-status ${statusClass}">${statusText}</span></td>
         <td>
-          <button class="btn-edit" onclick="editItem(${realIdx})">✏️ Edit</button>
-          <button class="btn-del" onclick="hapusItem(${realIdx})">🗑️</button>
+          <button class="btn-edit" onclick="editItem(${realIdx})">Edit</button>
+          <button class="btn-del" onclick="hapusItem(${realIdx})">Hapus</button>
         </td>
       </tr>
     `;
