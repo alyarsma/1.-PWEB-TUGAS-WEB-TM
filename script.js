@@ -125,6 +125,52 @@ const defaultData = [
       "kostum Luffy Gear 5 lengkap dengan aksesori topi jerami dan wig",
     foto: "picture/Luffy Gear 5.jpg",
   },
+
+  {
+    kode: "NKY-010",
+    nama: "Elizabeth Gintama",
+    kategori: "anime",
+    jumlah: 0,
+    satuan: "set",
+    harga: 90000,
+    tanggalMasuk: "2026-04-01",
+    supplier: "Dextonasia Cosplay",
+    daerah: "Bali",
+    keterangan:
+      "kostum om Elizabeth",
+    foto: "picture/Elizabeth.jpg",
+  },
+
+  {
+    kode: "NKY-010",
+    nama: "Makima Chainsaw Man",
+    kategori: "anime",
+    jumlah: 0,
+    satuan: "set",
+    harga: 90000,
+    tanggalMasuk: "2026-04-01",
+    supplier: "Dextonasia Cosplay",
+    daerah: "Bali",
+    keterangan:
+      "kostum Makima Chainsaw Man",
+    foto: "picture/Makima.jpg",
+  },
+
+  {
+    kode: "NKY-011",
+    nama: "Ada Wong Resident Evil",
+    kategori: "game",
+    jumlah: 6,
+    satuan: "set",
+    harga: 90000,
+    tanggalMasuk: "2026-04-09",
+    supplier: "Dextonasia Cosplay",
+    daerah: "Bali",
+    keterangan:
+      "Tidak dengan wig",
+    foto: "picture/Ada Wong.jpg",
+  },
+
 ];
 
 const STORAGE_KEY = "nekoya_inventory";
