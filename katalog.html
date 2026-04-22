@@ -11,6 +11,7 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <nav id="navbar">
       <a href="index.html" class="nav-logo">
@@ -194,7 +195,7 @@
       </div>
     </section>
 
-   <footer id="footer" class="footer-simple">
+    <footer id="footer" class="footer-simple">
       <div class="container">
         <div class="footer-top">
           <div class="footer-left">
@@ -286,6 +287,13 @@
         </div>
       </div>
     </footer>
+
+    <div id="detailModal" class="modal-detail">
+      <div class="modal-detail-box">
+        <button class="modal-close" onclick="closeDetailModal()">✕</button>
+        <div id="detailBody"></div>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>

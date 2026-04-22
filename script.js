@@ -136,13 +136,12 @@ const defaultData = [
     tanggalMasuk: "2026-04-01",
     supplier: "Dextonasia Cosplay",
     daerah: "Bali",
-    keterangan:
-      "kostum om Elizabeth",
+    keterangan: "kostum om Elizabeth",
     foto: "picture/Elizabeth.jpg",
   },
 
   {
-    kode: "NKY-010",
+    kode: "NKY-011",
     nama: "Makima Chainsaw Man",
     kategori: "anime",
     jumlah: 0,
@@ -151,13 +150,12 @@ const defaultData = [
     tanggalMasuk: "2026-04-01",
     supplier: "Dextonasia Cosplay",
     daerah: "Bali",
-    keterangan:
-      "kostum Makima Chainsaw Man",
+    keterangan: "kostum Makima Chainsaw Man",
     foto: "picture/Makima.jpg",
   },
 
   {
-    kode: "NKY-011",
+    kode: "NKY-012",
     nama: "Ada Wong Resident Evil",
     kategori: "game",
     jumlah: 6,
@@ -166,11 +164,9 @@ const defaultData = [
     tanggalMasuk: "2026-04-09",
     supplier: "Dextonasia Cosplay",
     daerah: "Bali",
-    keterangan:
-      "Tidak dengan wig",
+    keterangan: "Tidak dengan wig",
     foto: "picture/Ada Wong.jpg",
   },
-
 ];
 
 const STORAGE_KEY = "nekoya_inventory";
@@ -205,43 +201,125 @@ const renderKatalog = (data) => {
     document.getElementById("countLabel").textContent = "0 kostum ditemukan";
     return;
   }
+
   document.getElementById("countLabel").textContent =
     `Menampilkan ${data.length} kostum`;
+
   grid.innerHTML = data
     .map((item) => {
+      const realIndex = inventory.indexOf(item);
       const isLow = item.jumlah < 5;
       const emoji = emojiMap[item.kategori] || "🎀";
+
       const bgColors = {
         anime: "135deg,#1a3a8f,#7c3aed",
         vtuber: "135deg,#0f766e,#1a3a8f",
         game: "135deg,#7c2d12,#1a3a8f",
         original: "135deg,#4a1d96,#1a3a8f",
       };
+
       return `
-      <article class="card" onclick="handleCardClick(${inventory.indexOf(item)})">
-        <div class="card-img" style="background:linear-gradient(${bgColors[item.kategori] || bgColors.anime})">
-          ${item.foto ? `<img src="${item.foto}" alt="${item.nama}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>` : `<span style="font-size:3.5rem;position:relative;z-index:1;">${emoji}</span>`}
-          <div class="card-badge">${item.kategori.toUpperCase()}</div>
-        </div>
-        <div class="card-body">
-          <div class="card-name">${item.nama}</div>
-          <div class="card-series">${item.daerah}</div>
-          <div class="card-meta">
-            <div class="card-price">${formatRp(item.harga)}<br/><small>/hari</small></div>
-            <div class="card-loc">${item.daerah}</div>
-          </div>
-        </div>
-        ${isLow ? `<div class="card-stock-low">⚠️ Stok Menipis (${item.jumlah} tersisa)</div>` : ""}
-      </article>
-    `;
+  <article class="card" onclick="handleCardClick(${realIndex})">
+    <div class="card-img" style="background:linear-gradient(${bgColors[item.kategori] || bgColors.anime})">
+      ${
+        item.foto
+          ? `<img src="${item.foto}" alt="${item.nama}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>`
+          : `<span style="font-size:3.5rem;position:relative;z-index:1;">${emoji}</span>`
+      }
+      <div class="card-badge">${item.kategori.toUpperCase()}</div>
+    </div>
+
+    <div class="card-body">
+      <div class="card-name">${item.nama}</div>
+      <div class="card-series">${item.daerah}</div>
+      <div class="card-meta">
+        <div class="card-price">${formatRp(item.harga)}<br/><small>/hari</small></div>
+        <div class="card-loc">${item.daerah}</div>
+      </div>
+    </div>
+
+    ${isLow ? `<div class="card-stock-low">⚠️ Stok Menipis (${item.jumlah} tersisa)</div>` : ""}
+  </article>
+`;
     })
     .join("");
 };
 
 const handleCardClick = (i) => {
+  showDetailProduk(i);
+};
+
+const showDetailProduk = (i) => {
+  const item = inventory[i];
+  const modal = document.getElementById("detailModal");
+  const body = document.getElementById("detailBody");
+
+  if (!modal || !body) return;
+
+  body.innerHTML = `
+    <div class="detail-content">
+      <div class="detail-image-wrap">
+        ${
+          item.foto
+            ? `<img src="${item.foto}" alt="${item.nama}" class="detail-image" />`
+            : `<div class="detail-no-image">Tidak ada foto</div>`
+        }
+      </div>
+
+      <div class="detail-info">
+        <div class="detail-top">
+          <span class="detail-category">${item.kategori.toUpperCase()}</span>
+          <h3>${item.nama}</h3>
+          <p class="detail-price">${formatRp(item.harga)} <span>/hari</span></p>
+        </div>
+
+        <div class="detail-grid">
+          <div><strong>Kode:</strong> ${item.kode}</div>
+          <div><strong>Daerah:</strong> ${item.daerah}</div>
+          <div><strong>Stok:</strong> ${item.jumlah} ${item.satuan}</div>
+          <div><strong>Supplier:</strong> ${item.supplier}</div>
+          <div><strong>Tanggal Masuk:</strong> ${item.tanggalMasuk}</div>
+          <div><strong>Status:</strong> ${
+            item.jumlah === 0
+              ? "Habis"
+              : item.jumlah < 5
+                ? "Stok Menipis"
+                : "Tersedia"
+          }</div>
+        </div>
+
+        <div class="detail-desc">
+          <strong>Keterangan:</strong>
+          <p>${item.keterangan || "-"}</p>
+        </div>
+
+        <div class="detail-actions">
+          <button class="btn-edit-detail" onclick="goToEdit(${i})">Edit Produk</button>
+          <button class="btn-close-detail" onclick="closeDetailModal()">Tutup</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  modal.classList.add("active");
+};
+
+const closeDetailModal = () => {
+  const modal = document.getElementById("detailModal");
+  if (modal) modal.classList.remove("active");
+};
+
+const goToEdit = (i) => {
   localStorage.setItem("nekoya_edit_index", i);
   window.location.href = "tambah.html";
 };
+
+const detailModal = document.getElementById("detailModal");
+if (detailModal) {
+  detailModal.addEventListener("click", (e) => {
+    if (e.target === detailModal) closeDetailModal();
+  });
+}
 
 const filterKatalog = () => {
   const q = document.getElementById("searchInput").value.toLowerCase().trim();
@@ -646,56 +724,3 @@ const footerYear = document.getElementById("footerYear");
 if (footerYear) {
   footerYear.textContent = new Date().getFullYear();
 }
-
-// const footer = document.getElementById("footer");
-
-// if (footer) {
-//   footer.innerHTML = `
-//     <div class="container">
-//       <div class="footer-main">
-//         <div class="footer-brand-card">
-//           <a href="index.html" class="footer-brand-top">
-//             <div class="logo-icon">
-//               <img src="picture/Logo Nekoya.png" alt="Logo Nekoya" />
-//             </div>
-//             <div>
-//               <span class="logo-text">NEKOYA</span>
-//               <span class="logo-sub">Cosplay Rental</span>
-//             </div>
-//           </a>
-
-//           <p class="footer-brand-desc">
-//             Platform rental cosplay anime, Vtuber, dan karakter game terbesar di
-//             Indonesia. Terpercaya, berkualitas, dan tersebar di berbagai daerah.
-//           </p>
-
-//           <div class="footer-social">
-//             <a href="#" class="social-btn" aria-label="Instagram">
-//               <img src="picture/instagram.png" alt="Instagram" class="social-icon" />
-//             </a>
-//             <a href="#" class="social-btn" aria-label="TikTok">
-//               <img src="picture/tiktok.png" alt="TikTok" class="social-icon" />
-//             </a>
-//             <a href="#" class="social-btn" aria-label="Discord">
-//               <img src="picture/discord.png" alt="Discord" class="social-icon" />
-//             </a>
-//             <a href="#" class="social-btn" aria-label="Twitter">
-//               <img src="picture/twitter.png" alt="Twitter" class="social-icon" />
-//             </a>
-//           </div>
-//         </div>
-//       </div>
-
-//       <div class="footer-bottom-bar">
-//         <p>© 2026 <span>NEKOYA Cosplay Rental</span>. All rights reserved.</p>
-
-//         <div class="footer-bottom-links">
-//           <a href="#">Privacy Policy</a>
-//           <a href="#">Terms of Service</a>
-//           <a href="kontak.html">Contact Us</a>
-//           <a href="#">Version 1.0</a>
-//         </div>
-//       </div>
-//     </div>
-//   `;
-// }
